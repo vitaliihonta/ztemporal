@@ -35,6 +35,6 @@ class ZioLocalWorkflowImpl extends ZioLocalWorkflow {
 
   override def complete(): Unit = {
     logger.info("Completion received!")
-    state := ()
+    state := (())
   }
 }

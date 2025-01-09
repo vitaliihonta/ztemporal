@@ -125,6 +125,6 @@ class ComplexWorkflowImpl extends ComplexWorkflow {
     triple.snapshot
 
   override def resume(): Unit = {
-    resumed := ()
+    resumed := (())
   }
 }

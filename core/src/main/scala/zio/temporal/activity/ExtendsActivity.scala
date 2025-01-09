@@ -8,5 +8,5 @@ object ExtendsActivity extends ExtendsActivityImplicits {
   def apply[A](implicit ev: ExtendsActivity[A]): ev.type = ev
 
   @internalApi
-  final object __zio_temporal_ExtendsActivityInstance extends ExtendsActivity[Any]
+  object __zio_temporal_ExtendsActivityInstance extends ExtendsActivity[Any]
 }

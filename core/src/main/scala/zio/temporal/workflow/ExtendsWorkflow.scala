@@ -8,5 +8,5 @@ object ExtendsWorkflow extends ExtendsWorkflowImplicits {
   def apply[A](implicit ev: ExtendsWorkflow[A]): ev.type = ev
 
   @internalApi
-  final object __zio_temporal_ExtendsWorkflowInstance extends ExtendsWorkflow[Any]
+  object __zio_temporal_ExtendsWorkflowInstance extends ExtendsWorkflow[Any]
 }

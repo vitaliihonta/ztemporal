@@ -8,5 +8,5 @@ object HasPublicNullaryConstructor extends HasPublicNullaryConstructorImplicits 
   def apply[A](implicit ev: HasPublicNullaryConstructor[A]): ev.type = ev
 
   @internalApi
-  final object __zio_temporal_HasPublicNullaryConstructorInstance extends HasPublicNullaryConstructor[Any]
+  object __zio_temporal_HasPublicNullaryConstructorInstance extends HasPublicNullaryConstructor[Any]
 }

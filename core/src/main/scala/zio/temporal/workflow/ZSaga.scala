@@ -215,21 +215,21 @@ object ZSaga {
 
     def interpret[A0](saga: ZSaga[A0]): Either[Throwable, A0] =
       saga match {
-        case succeed: Succeed[A0] => Right(succeed.value)
+        case succeed: Succeed[_] => Right(succeed.value)
         case failed: Failed       => Left(failed.error)
-        case attempt: Attempt[A0] => Try(attempt.thunk()).toEither
+        case attempt: Attempt[_] => Try(attempt.thunk()).toEither
 
-        case compensation: Compensation[A0] =>
+        case compensation: Compensation[_] =>
           temporalSaga.addCompensation((() => compensation.compensate()): Proc)
           interpret(compensation.cont)
 
-        case cont: Bind[baseA, A0] =>
+        case cont: Bind[_, _] =>
           interpret(cont.base) match {
             case left @ Left(_) => left.asInstanceOf[Either[Throwable, A0]]
             case Right(value)   => interpret(cont.cont(value))
           }
 
-        case catchAll: CatchAll[A0] =>
+        case catchAll: CatchAll[_] =>
           interpret(catchAll.base) match {
             case right: Right[Throwable, A0] => right
             case Left(error)                 => interpret(catchAll.handle(error))

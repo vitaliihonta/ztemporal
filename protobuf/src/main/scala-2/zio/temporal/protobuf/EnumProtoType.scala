@@ -14,18 +14,18 @@ object EnumProtoType {
 }
 
 final class EnumeratumEnumException private[protobuf] (
-  enum:      Enum[_],
+  `enum`:      Enum[_],
   entry:     AnyRef,
   companion: GeneratedEnumCompanion[_])
     extends RuntimeException {
 
   override def getMessage: String =
-    s"Unable to convert $entry (value of $enum) to $companion, expected one of ${companion.values.mkString("[", ", ", "]")}"
+    s"Unable to convert $entry (value of ${`enum`}) to $companion, expected one of ${companion.values.mkString("[", ", ", "]")}"
 }
 
 final class EnumProtoType[P <: GeneratedEnum, E <: EnumEntry] private[protobuf] (
   companion: GeneratedEnumCompanion[P],
-  enum:      Enum[E])
+  `enum`:      Enum[E])
     extends ProtoType[E] {
 
   override type Repr = P
@@ -34,16 +34,16 @@ final class EnumProtoType[P <: GeneratedEnum, E <: EnumEntry] private[protobuf] 
     companion
       .fromName(value.entryName)
       .getOrElse(
-        throw new EnumeratumEnumException(enum, value, companion)
+        throw new EnumeratumEnumException(`enum`, value, companion)
       )
 
   override def fromRepr(repr: P): E =
-    enum.withNameInsensitive(repr.name)
+    `enum`.withNameInsensitive(repr.name)
 }
 
 final class EnumProtoTypePartiallyApplied[P <: GeneratedEnum](private val companion: GeneratedEnumCompanion[P])
     extends AnyVal {
 
-  def to[E <: EnumEntry](enum: Enum[E]): ProtoType.Of[E, P] =
+  def to[E <: EnumEntry](`enum`: Enum[E]): ProtoType.Of[E, P] =
     new EnumProtoType[P, E](companion, `enum`)
 }

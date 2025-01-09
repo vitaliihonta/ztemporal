@@ -10,12 +10,12 @@ import zio.temporal.{ZSearchAttribute, ZSearchAttributeMeta}
 trait EnumSearchAttributes {
 
   implicit def enumAttribute[E <: EnumEntry](
-    implicit enum: Enum[E]
+    implicit `enum`: Enum[E]
   ): ZSearchAttributeMeta.Of[E, ZSearchAttribute.Keyword, String] =
-    new ZSearchAttributeMeta.KeywordMeta[E](_.entryName, enum.withName)
+    new ZSearchAttributeMeta.KeywordMeta[E](_.entryName, `enum`.withName)
 
   implicit def stringEnumAttribute[E <: StringEnumEntry](
-    implicit enum: StringEnum[E]
+    implicit `enum`: StringEnum[E]
   ): ZSearchAttributeMeta.Of[E, ZSearchAttribute.Keyword, String] =
-    new ZSearchAttributeMeta.KeywordMeta[E](_.value, enum.withValue)
+    new ZSearchAttributeMeta.KeywordMeta[E](_.value, `enum`.withValue)
 }

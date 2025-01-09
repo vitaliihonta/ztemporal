@@ -68,12 +68,12 @@ object BuildConfig extends Dependencies {
 trait Dependencies {
 
   private object versions {
-    val temporal   = "1.25.1"
-    val zio        = "2.1.7"
-    val zioLogging = "2.3.0"
-    val enumeratum = "1.7.4"
-    val jackson    = "2.17.2"
-    val otel       = "1.40.0"
+    val temporal   = "1.27.0"
+    val zio        = "2.1.14"
+    val zioLogging = "2.4.0"
+    val enumeratum = "1.7.5"
+    val jackson    = "2.18.2"
+    val otel       = "1.45.0"
   }
 
   object org {
@@ -103,7 +103,7 @@ trait Dependencies {
     val testFrameworks = Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
 
     // only for examples
-    val cli = org.zio %% "zio-cli" % "0.5.0"
+    val cli = org.zio %% "zio-cli" % "0.7.0"
   }
 
   object Enumeratum {
@@ -129,7 +129,7 @@ trait Dependencies {
   object Logging {
     val zio      = org.zio         %% "zio-logging"       % versions.zioLogging
     val zioSlf4j = org.zio         %% "zio-logging-slf4j" % versions.zioLogging
-    val logback  = "ch.qos.logback" % "logback-classic"   % "1.2.11"
+    val logback  = "ch.qos.logback" % "logback-classic"   % "1.5.16"
   }
 
   object Testing {
@@ -141,10 +141,10 @@ trait Dependencies {
     val otelExporterOtlp     = "io.opentelemetry"         % "opentelemetry-exporter-otlp"               % versions.otel
     val otelTracePropagators = "io.opentelemetry"         % "opentelemetry-extension-trace-propagators" % versions.otel
     val otelOpentracingShim  = "io.opentelemetry"         % "opentelemetry-opentracing-shim"            % versions.otel
-    val otelSemvonc          = "io.opentelemetry.semconv" % "opentelemetry-semconv"                     % "1.26.0-alpha"
+    val otelSemvonc          = "io.opentelemetry.semconv" % "opentelemetry-semconv"                     % "1.29.0-alpha"
 
     val otel = Seq(otelApi, otelExporterOtlp, otelTracePropagators, otelOpentracingShim, otelSemvonc)
 
-    val micrometerOtlp = "io.micrometer" % "micrometer-registry-otlp" % "1.13.2"
+    val micrometerOtlp = "io.micrometer" % "micrometer-registry-otlp" % "1.14.2"
   }
 }
