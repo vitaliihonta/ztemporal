@@ -1,6 +1,6 @@
 package zio.temporal.internal
 
-import zio.temporal.{activityMethod, workflowMethod}
+import zio.temporal.{activityInterface, activityMethod, workflowMethod}
 
 import scala.reflect.ClassTag
 import org.slf4j.LoggerFactory
@@ -37,6 +37,9 @@ private[zio] object ClassTagUtils {
 
   def getActivityType(cls: Class[_], methodName: String): String = {
     val actMethods = cls.getMethods.filter(_.getName == methodName).toList
+    val activityNamePrefix = Option(cls.getAnnotation(Predef.classOf[activityInterface]))
+      .map(_.namePrefix())
+      .getOrElse("")
 
     if (actMethods.isEmpty) {
       throw new NoActivityMethodException(s"$cls doesn't have an activity method '$methodName'!")
@@ -50,7 +53,7 @@ private[zio] object ClassTagUtils {
       .headOption
       .flatMap(ann => Option(ann.name()))
       .filter(_.nonEmpty)
-      .getOrElse(methodName.capitalize)
+      .getOrElse(activityNamePrefix + methodName.capitalize)
 
     logger.trace(s"Activity interface's $cls method=$methodName has activity name $name")
     name
