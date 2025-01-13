@@ -16,8 +16,11 @@ private[zio] object StubProxies {
   ): Delegate with Proxied = {
     val Delegate = delegateCtg.runtimeClass
     val Proxied  = proxiedCtg.runtimeClass
+    val classLoader = Option(Thread.currentThread().getContextClassLoader).getOrElse {
+      getClass.getClassLoader
+    }
     val proxy = java.lang.reflect.Proxy.newProxyInstance(
-      getClass.getClassLoader,
+      classLoader,
       Array(Delegate, Proxied),
       (proxy, method, methodArgs) =>
         if (method.getDeclaringClass.isAssignableFrom(Delegate)) {
