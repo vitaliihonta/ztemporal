@@ -57,7 +57,7 @@ lazy val coverageSettings = Seq(
 )
 
 lazy val baseProjectSettings = Seq(
-  scalaVersion := scala213,
+  scalaVersion       := scala213,
   crossScalaVersions := allScalaVersions,
   scalacOptions ++= {
     val baseOptions = Seq(
