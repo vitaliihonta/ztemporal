@@ -15,7 +15,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
     steps:
       - name: Checkout current branch
@@ -34,7 +34,7 @@ jobs:
         run: sbt scalafmtCheckAll
 
   compile:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 120
     steps:
       - name: Checkout current branch
@@ -57,7 +57,7 @@ jobs:
         run: sbt Test/compile
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
     strategy:
       fail-fast: false
@@ -80,7 +80,7 @@ jobs:
           directory: ./target/scala-2.13/coverage-report
 
   testJvms:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
     strategy:
       fail-fast: false
@@ -101,14 +101,14 @@ jobs:
         run: sbt test
 
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [lint, compile, test, testJvms]
     steps:
       - name: Aggregate of lint, mdoc and all tests
         run: echo "ci passed"
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
     needs: [ci]
     if: github.event_name != 'pull_request'
