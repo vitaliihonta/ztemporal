@@ -14,7 +14,7 @@ object EnumProtoType {
 }
 
 final class EnumeratumEnumException private[protobuf] (
-  `enum`:      Enum[_],
+  `enum`:    Enum[_],
   entry:     AnyRef,
   companion: GeneratedEnumCompanion[_])
     extends RuntimeException {
@@ -25,7 +25,7 @@ final class EnumeratumEnumException private[protobuf] (
 
 final class EnumProtoType[P <: GeneratedEnum, E <: EnumEntry] private[protobuf] (
   companion: GeneratedEnumCompanion[P],
-  `enum`:      Enum[E])
+  `enum`:    Enum[E])
     extends ProtoType[E] {
 
   override type Repr = P

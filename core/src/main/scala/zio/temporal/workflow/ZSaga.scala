@@ -216,7 +216,7 @@ object ZSaga {
     def interpret[A0](saga: ZSaga[A0]): Either[Throwable, A0] =
       saga match {
         case succeed: Succeed[_] => Right(succeed.value)
-        case failed: Failed       => Left(failed.error)
+        case failed: Failed      => Left(failed.error)
         case attempt: Attempt[_] => Try(attempt.thunk()).toEither
 
         case compensation: Compensation[_] =>
