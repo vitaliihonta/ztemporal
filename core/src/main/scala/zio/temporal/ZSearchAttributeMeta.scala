@@ -156,34 +156,34 @@ object ZSearchAttributeMeta extends ZSearchAttributeMetaCollectionInstances with
     override def decode(value: A): A = value
   }
 
-  private final object StringMeta extends SimplePlainMeta[String] {
+  private object StringMeta extends SimplePlainMeta[String] {
     override def underlyingAttributeKey(name: String): SearchAttributeKey[String] = {
       SearchAttributeKey.forText(name)
     }
   }
 
-  private final object BooleanMeta extends SimplePlainMeta[Boolean] {
+  private object BooleanMeta extends SimplePlainMeta[Boolean] {
     override def underlyingAttributeKey(name: String): SearchAttributeKey[Boolean] = {
       // safe to cast java.lang.Boolean to Boolean
       SearchAttributeKey.forBoolean(name).asInstanceOf[SearchAttributeKey[Boolean]]
     }
   }
 
-  private final object LongMeta extends SimplePlainMeta[Long] {
+  private object LongMeta extends SimplePlainMeta[Long] {
     override def underlyingAttributeKey(name: String): SearchAttributeKey[Long] = {
       // safe to cast java.lang.Long to Long
       SearchAttributeKey.forLong(name).asInstanceOf[SearchAttributeKey[Long]]
     }
   }
 
-  private final object DoubleMeta extends SimplePlainMeta[Double] {
+  private object DoubleMeta extends SimplePlainMeta[Double] {
     override def underlyingAttributeKey(name: String): SearchAttributeKey[Double] = {
       // safe to cast java.lang.Double to Double
       SearchAttributeKey.forDouble(name).asInstanceOf[SearchAttributeKey[Double]]
     }
   }
 
-  private final object OffsetDateTimeMeta extends SimplePlainMeta[OffsetDateTime] {
+  private object OffsetDateTimeMeta extends SimplePlainMeta[OffsetDateTime] {
     override def underlyingAttributeKey(name: String): SearchAttributeKey[OffsetDateTime] = {
       SearchAttributeKey.forOffsetDateTime(name)
     }

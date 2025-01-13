@@ -51,6 +51,6 @@ class ZioWorkflowUntypedImpl extends ZioWorkflowUntyped {
 
   override def complete(): Unit = {
     logger.info("Completion received!")
-    state := ()
+    state := (())
   }
 }

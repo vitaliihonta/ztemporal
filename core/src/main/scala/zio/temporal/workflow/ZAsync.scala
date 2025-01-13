@@ -226,7 +226,7 @@ object ZAsync {
   )(f:           A => ZAsync[B]
   )(implicit bf: BuildFrom[Collection[A], B, Collection[B]]
   ): ZAsync[Collection[B]] =
-    in.foldLeft[ZAsync[mutable.Builder[B, Collection[B]]]](succeed(bf(in)))((acc, a) => acc.zipWith(f(a))(_ += _))
+    in.foldLeft[ZAsync[mutable.Builder[B, Collection[B]]]](succeed(bf.newBuilder(in)))((acc, a) => acc.zipWith(f(a))(_ += _))
       .map(_.result())
 
   /** Similar to [[zio.ZIO.foreachDiscard]] for collections
@@ -371,7 +371,7 @@ object ZAsync {
     }
   }
 
-  final object Result {
+  object Result {
 
     final implicit class AllEffectsOps[A](private val self: Result[Cancel with Timeout, A]) extends AnyVal {
 

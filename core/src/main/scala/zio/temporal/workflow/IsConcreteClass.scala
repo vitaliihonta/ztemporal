@@ -8,5 +8,5 @@ object IsConcreteClass extends IsConcreteClassImplicits {
   def apply[A](implicit ev: IsConcreteClass[A]): ev.type = ev
 
   @internalApi
-  final object __zio_temporal_IsConcreteClassInstance extends IsConcreteClass[Any]
+  object __zio_temporal_IsConcreteClassInstance extends IsConcreteClass[Any]
 }

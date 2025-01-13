@@ -217,7 +217,7 @@ object ZScheduleSpec {
     protected[temporal] def applyTo(builder: ScheduleSpec.Builder): Unit
   }
 
-  final object Times {
+  object Times {
     def fromJava(spec: ScheduleSpec): Times = {
       def asCalendars = Option(spec.getCalendars)
         .filterNot(_.isEmpty)

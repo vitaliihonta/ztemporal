@@ -13,17 +13,17 @@ private[protobuf] sealed abstract class IdType[A] extends ProtoType[A] {
   override def fromRepr(repr: A): A = repr
 }
 
-private[protobuf] final object IntegerType extends IdType[Int]
+private[protobuf] object IntegerType extends IdType[Int]
 
-private[protobuf] final object LongType extends IdType[Long]
+private[protobuf] object LongType extends IdType[Long]
 
-private[protobuf] final object BooleanType extends IdType[Boolean]
+private[protobuf] object BooleanType extends IdType[Boolean]
 
-private[protobuf] final object StringType extends IdType[String]
+private[protobuf] object StringType extends IdType[String]
 
-private[protobuf] final object BytesType extends IdType[Array[Byte]]
+private[protobuf] object BytesType extends IdType[Array[Byte]]
 
-private[protobuf] final object UuidType extends ProtoType[ju.UUID] {
+private[protobuf] object UuidType extends ProtoType[ju.UUID] {
   override type Repr = UUID
 
   override def repr(value: ju.UUID): UUID =
@@ -36,7 +36,7 @@ private[protobuf] final object UuidType extends ProtoType[ju.UUID] {
     new ju.UUID(repr.mostSignificantBits, repr.leastSignificantBits)
 }
 
-private[protobuf] final object BigDecimalType extends ProtoType[scala.BigDecimal] {
+private[protobuf] object BigDecimalType extends ProtoType[scala.BigDecimal] {
   override type Repr = BigDecimal
 
   override def repr(value: scala.BigDecimal): BigDecimal =
@@ -49,7 +49,7 @@ private[protobuf] final object BigDecimalType extends ProtoType[scala.BigDecimal
     new scala.BigDecimal(new math.BigDecimal(BigIntegerType.fromRepr(repr.intVal).bigInteger, repr.scale))
 }
 
-private[protobuf] final object BigIntegerType extends ProtoType[scala.BigInt] {
+private[protobuf] object BigIntegerType extends ProtoType[scala.BigInt] {
   override type Repr = BigInteger
 
   override def repr(value: BigInt): BigInteger =
@@ -59,7 +59,7 @@ private[protobuf] final object BigIntegerType extends ProtoType[scala.BigInt] {
     new BigInt(new math.BigInteger(repr.value.toByteArray))
 }
 
-private[protobuf] final object ZUnitType extends ProtoType[Unit] {
+private[protobuf] object ZUnitType extends ProtoType[Unit] {
   override type Repr = ZUnit
 
   override def repr(value: Unit): ZUnitType.Repr = ZUnit()

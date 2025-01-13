@@ -1,8 +1,10 @@
-import BuildConfig._
+import BuildConfig.*
 
-val scala212 = "2.12.19"
-val scala213 = "2.13.14"
-val scala3   = "3.3.3"
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
+val scala212 = "2.12.20"
+val scala213 = "2.13.15"
+val scala3   = "3.3.4"
 
 val allScalaVersions          = List(scala212, scala213, scala3)
 val documentationScalaVersion = scala213
@@ -14,8 +16,8 @@ ThisBuild / projectStableVersion := {
   else (ThisBuild / version).value
 }
 
-ThisBuild / organization  := "dev.vhonta"
-ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / organization           := "dev.vhonta"
+ThisBuild / versionScheme          := Some("early-semver")
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 ThisBuild / sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
 
@@ -39,7 +41,7 @@ val publishSettings = Seq(
       id = "vitaliihonta",
       name = "Vitalii Honta",
       email = "vitalii.honta@gmail.com",
-      url = new URL("https://github.com/vitaliihonta")
+      url = url("https://github.com/vitaliihonta")
     )
   )
 )
@@ -55,6 +57,8 @@ lazy val coverageSettings = Seq(
 )
 
 lazy val baseProjectSettings = Seq(
+  scalaVersion := scala213,
+  crossScalaVersions := allScalaVersions,
   scalacOptions ++= {
     val baseOptions = Seq(
       "-language:implicitConversions",
@@ -92,6 +96,9 @@ val baseLibSettings = baseSettings ++ publishSettings
 lazy val root = project
   .in(file("."))
   .settings(baseSettings, noPublishSettings, unidocSettings)
+  .settings(
+    crossScalaVersions := Nil
+  ) // https://www.scala-sbt.org/1.x/docs/Cross-Build.html#Cross+building+a+project+statefully,
   .settings(
     name         := "zio-temporal-root",
     scalaVersion := scala213
