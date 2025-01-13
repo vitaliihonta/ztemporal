@@ -6,7 +6,7 @@ import zio.temporal.activity._
 import zio.temporal.workflow._
 import zio.temporal.state._
 
-@activityInterface
+@activityInterface(namePrefix = "Zio_")
 trait ZioActivity {
   @activityMethod(name = "Echo")
   def echo(what: String): String

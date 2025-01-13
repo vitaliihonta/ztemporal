@@ -7,7 +7,7 @@ sealed abstract class BankError(message: String) extends Exception(message)
 case class BankIsDownError()                     extends BankError("Bank is down")
 case class InvalidConfirmationCodeError()        extends BankError("Invalid confirmation code")
 
-@activityInterface
+@activityInterface(namePrefix = "Payment_")
 trait PaymentActivity {
   @throws[BankError]
   def proceed(transaction: ProceedTransactionCommand): TransactionView
