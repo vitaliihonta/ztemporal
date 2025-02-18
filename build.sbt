@@ -16,7 +16,7 @@ ThisBuild / projectStableVersion := {
   else (ThisBuild / version).value
 }
 
-ThisBuild / organization           := "dev.vhonta"
+ThisBuild / organization           := "com.guizmaii"
 ThisBuild / versionScheme          := Some("early-semver")
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 ThisBuild / sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
