@@ -117,7 +117,7 @@ trait Dependencies {
 
   object Utility {
     val scalaJava8Compat  = "org.scala-lang.modules" %% "scala-java8-compat"      % "1.0.2"
-    val collectionsCompat = "org.scala-lang.modules" %% "scala-collection-compat" % "2.12.0"
+    val collectionsCompat = "org.scala-lang.modules" %% "scala-collection-compat" % "2.13.0"
   }
 
   object ScalaReflect {
