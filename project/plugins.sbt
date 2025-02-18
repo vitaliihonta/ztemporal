@@ -1,4 +1,4 @@
-addSbtPlugin("org.scalameta"  % "sbt-scalafmt"      % "2.5.2")
+addSbtPlugin("org.scalameta"  % "sbt-scalafmt"      % "2.5.4")
 addSbtPlugin("com.eed3si9n"   % "sbt-projectmatrix" % "0.10.1")
 addSbtPlugin("com.github.sbt" % "sbt-ci-release"    % "1.9.2")
 addSbtPlugin("org.scoverage"  % "sbt-scoverage"     % "2.2.2")
